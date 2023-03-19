@@ -1,0 +1,6 @@
+{
+    "users" : [
+    {"email" : "admin@rafa.com"},
+    {"senha" : "1234"}
+]
+}
