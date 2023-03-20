@@ -1,18 +1,71 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import PrivateRoute from './PrivateRoute';
+import Link from 'next/link';
+import { useDispatch, useSelector } from 'react-redux'
+import {darkmode} from '../../store/actions'
+import {State, Action} from '../../store/interfaces'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  return (
+  const dispatch = useDispatch()
+  const Darkmode = useSelector((state: State) => state.darkMode)
+
+  const handleDarkModeToggle = () => {
+    dispatch(darkmode());
+    };
     
-    <PrivateRoute>
-      <h1>asdasdas</h1>
+    const navbarBackgroundColorClass = Darkmode
+    ? 'bg-dark'
+    : 'bg-body-tertiary';
+    const navbarTextColorClass = Darkmode ? 'text-light' : 'text-dark';
+    
+    
+
+  return (
+    <>
+      <header>
+      <nav className={`navbar navbar-expand-lg ${navbarBackgroundColorClass}`}>
+      <div className="container-fluid">
+        <Link className="navbar-brand" href="/">Controll</Link>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link className="nav-link active" aria-current="page" href="/">Home</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" href="/">Sobre</Link>
+            </li>
+          </ul>
+        </div>
+        <button className= {`btn btn-sm ${Darkmode ? 'btn-light' : 'btn-dark'}`} onClick={handleDarkModeToggle}>{Darkmode ? 'Light Mode' : 'Dark Mode'}</button>
+
+      </div>
+      </nav>
+        </header>
+      <main>
+        <h1>E ai qual seu time?</h1>
+        <div>
+          <h2>Time do RH</h2>
+          <button>Login</button>
+        </div>
+        <div>
+          <h2>Time de Tecnologia</h2>
+          <button>Login</button>
+        </div>
+      </main>
+
+      <footer>
+          <h3>@Criado Por Rafa</h3>
+      </footer>
+    </>
+
              
-    </PrivateRoute>
+    
     
   )
 }
