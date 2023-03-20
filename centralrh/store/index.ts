@@ -1,21 +1,22 @@
 import { createStore, Store } from 'redux'
 
-interface State {
-  // Defina o seu estado inicial aqui
-}
-
-interface Action {
-  type: string;
-  // Defina as ações aqui
-}
+import {State, Action} from './interfaces'
 
 const estadoinicial: State = {
-  // Defina o seu estado inicial aqui
+ 
+  darkMode : false
 }
 
 function reducer(state: State = estadoinicial, action: Action) {
   switch (action.type) {
     // Defina as ações aqui
+    case 'DARK_MODE': 
+    
+    return {
+      ...state,
+      darkMode : !state.darkMode
+    }
+
     default:
       return state
   }
