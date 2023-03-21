@@ -50,7 +50,9 @@ export default function Home() {
       </nav>
         </header>
       <main>
-        <h1>E ai qual seu time?</h1>
+        <div>
+          <h1>E ai qual seu time?</h1>
+        </div>
         <div>
           <h2>Time do RH</h2>
           <button>Login</button>
