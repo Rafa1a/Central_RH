@@ -23,50 +23,66 @@ export default function Home() {
     
     const navbartoggler = Darkmode ? 'navbar-dark' : 'navbar-light'
     
-
   return (
-    <>
-      <header>
-      <nav className={`navbar navbar-expand-lg  ${navbarBackgroundColorClass} ${navbartoggler}`}>
-      <div className="container-fluid">
-        <Link className={`navbar-brand ${navbarTextColorClass}`}  href="/">Controll</Link>
-        <button className="navbar-toggler navbar-toggler-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className={`nav-link active ${navbarTextColorClass}`} aria-current="page" href="/">Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link className={`nav-link ${navbarTextColorClass}`} href="/">Sobre</Link>
-            </li>
-          </ul>
-          
+  
+      <div className='d-flex flex-column min-vh-100'>
+        <header>
+        <nav className={`navbar navbar-expand-sm  ${navbarBackgroundColorClass} ${navbartoggler}`}>
+        <div className="container-fluid">
+          <Link className={`navbar-brand ${navbarTextColorClass}`}  href="/">Controll</Link>
+          <button className="navbar-toggler navbar-toggler-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link className={`nav-link active ${navbarTextColorClass}`} aria-current="page" href="/">Home</Link>
+              </li>
+              <li className="nav-item">
+                <Link className={`nav-link ${navbarTextColorClass}`} href="/">Sobre</Link>
+              </li>
+            </ul>
+        
+          </div>
+          <button className= {`btn btn-sm ${Darkmode ? 'btn-light' : 'btn-dark'}`} onClick={handleDarkModeToggle}>{Darkmode ? 'Dark Mode' : 'Light Mode'}</button>
         </div>
-        <button className= {`btn btn-sm ${Darkmode ? 'btn-light' : 'btn-dark'}`} onClick={handleDarkModeToggle}>{Darkmode ? 'Dark Mode' : 'Light Mode'}</button>
+        </nav>
+          </header>
+          <main className='container text-center flex-grow-1'>
+            <div className='row '>
+              <h1 className='col m-5 h-100'>E aí, qual é o seu time?</h1>
+            </div>
+            <div className='row align-items-center' >
+              <div className='col-4 m-auto'>
+                <div className='card flex-grow-1 h-50  '>
+                  <div className='card-body d-flex flex-column align-self-center '>
+                    <h2 className='card-title m-5 '>Time do RH</h2>
+                    <div className='mt-auto m-2'><button className='btn btn-primary h-40 w-50 '>Login</button></div>
+                  </div>
+                </div>
+              </div>
+              <div className='col-4 d-flex justify-content-center align-items-center divP '>
+                <div className='vr'></div>
+              </div>
+              <div className='col-4'>
+                <div className='card flex-grow-1'>
+                  <div className='card-body'>
+                    <h2>Time de Tecnologia</h2>
+                    <button>Login</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
+
+
+        <footer className=" bg-dark text-light py-2">
+          <div className="container d-flex justify-content-center ">
+            <p className="m-0 ">@Criado Por Rafa</p>
+          </div>
+        </footer>
       </div>
-
-      </nav>
-        </header>
-      <main>
-        <div>
-          <h1>E ai qual seu time?</h1>
-        </div>
-        <div>
-          <h2>Time do RH</h2>
-          <button>Login</button>
-        </div>
-        <div>
-          <h2>Time de Tecnologia</h2>
-          <button>Login</button>
-        </div>
-      </main>
-
-      <footer>
-          <h3>@Criado Por Rafa</h3>
-      </footer>
-    </>
+    
 
              
     
