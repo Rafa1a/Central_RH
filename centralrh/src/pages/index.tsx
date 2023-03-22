@@ -4,7 +4,7 @@ import PrivateRoute from './PrivateRoute';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux'
 import {darkmode} from '../../store/actions'
-import {State, Action} from '../../store/interfaces'
+import {State} from '../../store/interfaces'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,10 +23,14 @@ export default function Home() {
     
     const navbartoggler = Darkmode ? 'navbar-dark' : 'navbar-light'
     
+    const BackgroundColorClass = Darkmode
+    ? 'bg-light'
+    : 'bg-dark';
+    const TextColorClass = Darkmode ? 'text-dark' : 'text-light';
   return (
   
-      <div className='d-flex flex-column min-vh-100'>
-        <header>
+      <div className={`d-flex flex-column min-vh-100 ${navbarBackgroundColorClass}`}>
+        <header className='sombra'>
         <nav className={`navbar navbar-expand-sm  ${navbarBackgroundColorClass} ${navbartoggler}`}>
         <div className="container-fluid">
           <Link className={`navbar-brand ${navbarTextColorClass}`}  href="/">Controll</Link>
@@ -48,33 +52,43 @@ export default function Home() {
         </div>
         </nav>
           </header>
-          <main className='container text-center flex-grow-1'>
+
+          <main className='container text-center flex-grow-1 '>
             <div className='row '>
-              <h1 className='col m-5 h-100'>E aí, qual é o seu time?</h1>
+              <h1 className={`col m-5 h-100 ${navbarTextColorClass}`}>E aí, Qual é o Seu Time?</h1>
             </div>
-            <div className='row align-items-center' >
-              <div className='col-4 m-auto'>
-                <div className='card flex-grow-1 h-50  '>
-                  <div className='card-body d-flex flex-column align-self-center '>
-                    <h2 className='card-title m-5 '>Time do RH</h2>
-                    <div className='mt-auto m-2'><button className='btn btn-primary h-40 w-50 '>Login</button></div>
+            <div className='row align-items-center ' >
+
+              <div className='col-4 m-auto '>
+
+                <div className={`card flex-grow-1 h-50 ${BackgroundColorClass}`}>
+
+                  <div className='card-body d-flex flex-column align-items-center '>
+
+                    <h2 className={`card-title m-4  textS ${TextColorClass}`}>Time do <strong className='corV'>RH</strong></h2>
+
+                    <Link className='btn btn-primary buttonL' href="/loginrh">Login</Link>
+                    
                   </div>
                 </div>
               </div>
-              <div className='col-4 d-flex justify-content-center align-items-center divP '>
-                <div className='vr'></div>
+              <div className='col-1 d-flex justify-content-center align-items-center divP '>
+                <div className={`vr ${BackgroundColorClass}`}></div>
               </div>
-              <div className='col-4'>
-                <div className='card flex-grow-1'>
-                  <div className='card-body'>
-                    <h2>Time de Tecnologia</h2>
-                    <button>Login</button>
+              <div className='col-4 m-auto'>
+
+                <div className={`card flex-grow-1 h-50 ${BackgroundColorClass}`}>
+
+                  <div className='card-body d-flex flex-column align-items-center '>
+
+                    <h2 className={`card-title m-4  textS ${TextColorClass}`}>Time de <strong className='corV'>Tecnologia</strong></h2>
+
+                    <Link className='btn btn-primary buttonL ' href="/loginrh">Login</Link>
                   </div>
                 </div>
               </div>
             </div>
           </main>
-
 
         <footer className=" bg-dark text-light py-2">
           <div className="container d-flex justify-content-center ">

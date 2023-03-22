@@ -4,7 +4,7 @@ import {State, Action} from './interfaces'
 
 const estadoinicial: State = {
  
-  darkMode : false
+  darkMode : true
 }
 
 function reducer(state: State = estadoinicial, action: Action) {

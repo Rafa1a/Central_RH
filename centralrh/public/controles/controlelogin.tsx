@@ -1,5 +1,5 @@
 import  Login from '../interfaces/interfacelogin'
-const baseURL = 'http://localhost:3000/api/login'
+const baseURL = 'http://localhost:3000/api/loginrh'
 
 export async function getverificaologin(user : Login): Promise<Number> {
     const  response =await fetch (baseURL,{
