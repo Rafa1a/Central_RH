@@ -1,20 +1,30 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-interface PrivateRouteProps {
-  children: React.ReactNode;
+export enum LoginType {
+  RH = 'rh',
+  TEC = 'tec'
 }
 
-const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
+interface PrivateRouteProps {
+  children: React.ReactNode;
+  loginType: LoginType;
+}
+
+const PrivateRoute: React.FC<PrivateRouteProps> = ({ children, loginType }) => {
   const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
 
-    if (!token) {
-      router.push('/login');
+    if (!token ) {
+      if (loginType === LoginType.RH) {
+        router.push('/loginrh');
+      } else if (loginType === LoginType.TEC) {
+        router.push('/logintec');
+      }
     }
-  }, []);
+  }, [loginType]);
 
   return <>{children}</>;
 };

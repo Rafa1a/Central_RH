@@ -22,7 +22,7 @@ export default function LoginPage() {
       // fazer algo com a resposta, como redirecionar o usuário ou exibir mensagem de sucesso
       if(response === 200){
         localStorage.setItem('token', 'your_token_here');
-        router.push('/')
+        router.push('/centralrh')
       }else {
         alert('Usuario ou Senha Incorretos')
       }
@@ -48,7 +48,7 @@ export default function LoginPage() {
         <p className={`m-3 fs-4 ${TextColorClass}`}>Para entrar na nossa Plataforma</p>
       </div>
 
-      <div className='d-flex flex-row min-vh-100 align-items-center sombra'>
+      <div className='d-flex flex-row min-vh-100 align-items-center sombra '>
   <form className='m-3'>
     
     <div className="mb-3">
@@ -60,7 +60,7 @@ export default function LoginPage() {
       <div className="input-group">
 
         <input type={mostrarSenha ? 'text' : 'password'}
-        className="form-control" id="senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
+        className="form-control " id="senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
 
         <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={() => setMostrarSenha(!mostrarSenha)}>
 

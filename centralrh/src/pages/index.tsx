@@ -1,6 +1,6 @@
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import PrivateRoute from './PrivateRoute';
+
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux'
 import {darkmode} from '../../store/actions'
