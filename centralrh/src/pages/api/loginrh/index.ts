@@ -3,7 +3,10 @@ import users from '../../../../public/usuarios/RHusers.json';
 
 
 
+
 export default async function login (req:NextApiRequest, res: NextApiResponse){
+
+
     if (req.method === 'POST'){
         try{
             const {email, senha} = req.body

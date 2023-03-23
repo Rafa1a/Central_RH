@@ -2,7 +2,7 @@ import Entrevista from '../interfaces/entrevista';
 import data from '../usuarios/entrevistas.json'
 const filePath = '../usuarios/entrevistas.json';
 
-const baseURL = 'http://localhost:3000/api/entrevistas'
+const baseURL = 'https://central-rh-dzv2-rafa1a.vercel.app/api/entrevistas'
 
 export async function getEntrevistas () {
   const response = await fetch(filePath);
