@@ -1,7 +1,9 @@
 {
     "users" : [
-    
-    {"email" : "rafarh"},
+    {"id": 0},
+    {"nome": "Kainã Bernudes"},
+    { "perfil": "RH"},
+    {"email" : "kainarh"},
     {"senha" : "1234"}
 ]
 } 

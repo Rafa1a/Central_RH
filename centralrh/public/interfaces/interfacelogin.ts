@@ -1,6 +1,7 @@
 interface Login {
-    codigo : number;
+    id : number;
     nome : string;
+    perfil: string;
     email : string; 
     senha : string;
 }

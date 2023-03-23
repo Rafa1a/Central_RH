@@ -1,7 +1,9 @@
 {
     "users" : [
-    
-    {"email" : "rafatec"},
-    {"senha" : "1234"}
+        {"id": 1},
+        {"nome": "Rafinha leal"},
+        { "perfil": "TEC"},
+        {"email" : "rafatec"},
+        {"senha" : "1234"}
 ]
 } 

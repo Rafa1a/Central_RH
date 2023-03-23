@@ -80,8 +80,6 @@ export default function LoginPageRH() {
                     </div>
                     <p className="mb-1">{item.descricao}</p>
                     <small>{item.vaga}</small>
-                    
-
                   </button>
                 ))}
                  

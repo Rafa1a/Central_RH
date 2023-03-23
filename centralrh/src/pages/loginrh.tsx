@@ -16,7 +16,7 @@ export default function LoginPage() {
   const Darkmode = useSelector((state: State) => state.darkMode)
 
   async function handleLogin() {
-    const user: Login = { codigo: -1, nome: "", email, senha };
+    const user: Login = { id: 0, nome: "", perfil:"", email, senha }; 
     try {
       const response  = await getverificaologinrh(user);
       // fazer algo com a resposta, como redirecionar o usuário ou exibir mensagem de sucesso
