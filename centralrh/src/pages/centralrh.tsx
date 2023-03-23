@@ -9,6 +9,33 @@ import {setadicionarentrevista, setexcluir} from '../../public/controles/control
 import moment from "moment";
 
 export default function LoginPageRH() {
+  const [nomeCandidato, setNomeCandidato] = useState<string>('');
+const [vaga, setVaga] = useState<string>('');
+const [redesSociais, setRedesSociais] = useState<string[]>([]);
+const [descricao, setDescricao] = useState<string>('');
+const [linkTeste, setlinkTeste] = useState<string>('');
+const [dataHora, setdataHora] = useState<string>('');
+const [responsaveis, setresponsaveis] = useState<string[]>([]);
+const [anexos, setanexos] = useState<string[]>([]);
+
+const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+  const entrevista = { 
+    id : 0 ,            
+    nomeCandidato,
+    vaga,
+    redesSociais,
+    descricao,
+    linkTeste,
+    dataHora,
+    responsaveis,
+    anexos,
+  };
+  await setadicionarentrevista(entrevista);
+  // atualizar lista de entrevistas
+};
+
+
   const dispatch = useDispatch()
 
   const Darkmode = useSelector((state: State) => state.darkMode)
@@ -29,6 +56,7 @@ export default function LoginPageRH() {
     setShowModal(true);
   };
   
+
   const navbarBackgroundColorClass = Darkmode
   ? 'bg-dark'
   : 'bg-body-tertiary';
@@ -72,7 +100,7 @@ export default function LoginPageRH() {
             <main className={`d-flex flex-grow-1 flex-column justify-content-center align-items-center min-vh-100 ${navbarBackgroundColorClass}`}>
               <div className='row flex-grow-1  justify-content-center align-items-center w-100'>
               <div className='col-6 d-flex justify-content-center'>
-                <button type="button" className="btn btn-primary mx-2 w-25" onClick={handleShowModal}>Botão</button>
+                <button type="button" className="btn btn-primary mx-2 w-25" onClick={handleShowModal}>Adicionar</button>
                 {showModal && (
   <div className="modal" tabIndex={-1} role="dialog" style={{ display: "block" }}>
     <div className="modal-dialog" role="document">
@@ -82,64 +110,65 @@ export default function LoginPageRH() {
           <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
         </div>
         <div className="modal-body">
-          <form>
+          <form onSubmit={handleSubmit}> 
             <div className="mb-3">
               <label htmlFor="nomeCandidato" className="form-label">
                 Nome do Candidato
               </label>
-              <input type="text" className="form-control" id="nomeCandidato" />
+              <input type="text" className="form-control" id="nomeCandidato" onChange={(event) => setNomeCandidato(event.target.value)}/>
             </div>
             <div className="mb-3">
               <label htmlFor="vaga" className="form-label">
                 Vaga
               </label>
-              <input type="text" className="form-control" id="vaga" />
+              <input type="text" className="form-control" id="vaga" onChange={(event) => setVaga(event.target.value)}/>
             </div>
             <div className="mb-3">
               <label htmlFor="redesSociais" className="form-label">
                 Redes Sociais
               </label>
-              <input type="text" className="form-control" id="redesSociais" />
+              <input type="text" className="form-control" id="redesSociais" onChange={(event) => setRedesSociais([event.target.value])}/>
             </div>
             <div className="mb-3">
               <label htmlFor="descricao" className="form-label">
                 Descrição
               </label>
-              <textarea className="form-control" id="descricao" rows={3}></textarea>
+              <textarea className="form-control" id="descricao" rows={3} onChange={(event) => setDescricao(event.target.value)}></textarea>
             </div>
             <div className="mb-3">
               <label htmlFor="linkTeste" className="form-label">
                 Link do Teste
               </label>
-              <input type="text" className="form-control" id="linkTeste" />
+              <input type="text" className="form-control" id="linkTeste" onChange={(event) => setlinkTeste(event.target.value)}/>
             </div>
             <div className="mb-3">
               <label htmlFor="dataHora" className="form-label">
                 Data e Hora
               </label>
-              <input type="datetime-local" className="form-control" id="dataHora" />
+              <input type="datetime-local" className="form-control" id="dataHora" onChange={(event) => setdataHora(event.target.value)}/>
             </div>
             <div className="mb-3">
               <label htmlFor="responsaveis" className="form-label">
                 Responsáveis
               </label>
-              <input type="text" className="form-control" id="responsaveis" />
+              <input type="text" className="form-control" id="responsaveis" onChange={(event) => setresponsaveis([event.target.value])}/>
             </div>
             <div className="mb-3">
               <label htmlFor="anexos" className="form-label">
                 Anexos
               </label>
               <div className="custom-file">
-                <input type="file" className="custom-file-input" id="anexos" />
+                <input type="file" className="custom-file-input" id="anexos" onChange={(event) => setanexos([event.target.value])} />
                 <label className="custom-file-label" htmlFor="anexos">Escolher arquivo</label>
               </div>
             </div>
+            <div className="modal-footer">
+          <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Cancelar</button>
+          <button type="submit" className="btn btn-primary">Salvar</button>
+        </div>
           </form>
         </div>
-        <div className="modal-footer">
-          <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Cancelar</button>
-          <button type="button" className="btn btn-primary" onClick={() => handleSubmit()}>Salvar</button>
-        </div>
+        
       </div>
     </div>
   </div>
