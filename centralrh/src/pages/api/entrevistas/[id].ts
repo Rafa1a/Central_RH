@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import Entrevista from '../../../../public/interfaces/entrevista';
 import fs from 'fs';
-import data from '../../../../public/usuarios/entrevistas.json'
+
 
 
 const filePath = 'https://central-rh-dzv2-rafa1a.vercel.app/usuarios/entrevistas.json';

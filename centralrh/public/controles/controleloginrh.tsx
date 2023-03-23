@@ -1,5 +1,6 @@
 
 import  Login from '../interfaces/interfacelogin'
+
 const baseURL = 'https://central-rh-dzv2-rafa1a.vercel.app/api/loginrh'
 
 export async function getverificaologinrh(user : Login): Promise<Number> {

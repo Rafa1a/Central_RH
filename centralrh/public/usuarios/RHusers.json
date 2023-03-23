@@ -2,7 +2,7 @@
     "users" : [
     {"id": 0},
     {"nome": "Kainã Bernudes"},
-    { "perfil": "RH"},
+    {"perfil": "RH"},
     {"email" : "rafarh"},
     {"senha" : "1234"}
 ]

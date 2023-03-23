@@ -13,6 +13,7 @@ export default function LoginPageRH() {
 
   const Darkmode = useSelector((state: State) => state.darkMode)
   const [activeIndex, setActiveIndex] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
   const handleDarkModeToggle = () => {
     dispatch(darkmode());
@@ -24,6 +25,9 @@ export default function LoginPageRH() {
   const handleclickexcluir = (id:number) => {
     setexcluir(id)
   }
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
   
   const navbarBackgroundColorClass = Darkmode
   ? 'bg-dark'
@@ -68,7 +72,80 @@ export default function LoginPageRH() {
             <main className={`d-flex flex-grow-1 flex-column justify-content-center align-items-center min-vh-100 ${navbarBackgroundColorClass}`}>
               <div className='row flex-grow-1  justify-content-center align-items-center w-100'>
               <div className='col-6 d-flex justify-content-center'>
-                <button type="button" className="btn btn-primary mx-2 w-25">Botão</button>
+                <button type="button" className="btn btn-primary mx-2 w-25" onClick={handleShowModal}>Botão</button>
+                {showModal && (
+  <div className="modal" tabIndex={-1} role="dialog" style={{ display: "block" }}>
+    <div className="modal-dialog" role="document">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h5 className="modal-title">Adicionar Entrevista</h5>
+          <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
+        </div>
+        <div className="modal-body">
+          <form>
+            <div className="mb-3">
+              <label htmlFor="nomeCandidato" className="form-label">
+                Nome do Candidato
+              </label>
+              <input type="text" className="form-control" id="nomeCandidato" />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="vaga" className="form-label">
+                Vaga
+              </label>
+              <input type="text" className="form-control" id="vaga" />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="redesSociais" className="form-label">
+                Redes Sociais
+              </label>
+              <input type="text" className="form-control" id="redesSociais" />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="descricao" className="form-label">
+                Descrição
+              </label>
+              <textarea className="form-control" id="descricao" rows={3}></textarea>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="linkTeste" className="form-label">
+                Link do Teste
+              </label>
+              <input type="text" className="form-control" id="linkTeste" />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="dataHora" className="form-label">
+                Data e Hora
+              </label>
+              <input type="datetime-local" className="form-control" id="dataHora" />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="responsaveis" className="form-label">
+                Responsáveis
+              </label>
+              <input type="text" className="form-control" id="responsaveis" />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="anexos" className="form-label">
+                Anexos
+              </label>
+              <div className="custom-file">
+                <input type="file" className="custom-file-input" id="anexos" />
+                <label className="custom-file-label" htmlFor="anexos">Escolher arquivo</label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div className="modal-footer">
+          <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Cancelar</button>
+          <button type="button" className="btn btn-primary" onClick={() => handleSubmit()}>Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+
                 <button type="button" className="btn btn-primary mx-2 " onClick={() => handleclickexcluir(activeIndex)}>excluir</button>
               </div>
               
