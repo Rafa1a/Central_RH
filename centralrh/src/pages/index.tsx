@@ -1,12 +1,10 @@
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
 
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux'
 import {darkmode} from '../../store/actions'
 import {State} from '../../store/interfaces'
 
-const inter = Inter({ subsets: ['latin'] })
+
 
 export default function Home() {
   const dispatch = useDispatch()
@@ -83,7 +81,7 @@ export default function Home() {
 
                     <h2 className={`card-title m-4  textS ${TextColorClass}`}>Time de <strong className='corV'>Tecnologia</strong></h2>
 
-                    <Link className='btn btn-primary buttonL ' href="/loginrh">Login</Link>
+                    <Link className='btn btn-primary buttonL ' href="/logintec">Login</Link>
                   </div>
                 </div>
               </div>

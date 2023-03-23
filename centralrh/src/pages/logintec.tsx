@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { getverificaologinrh } from '../../public/controles/controleloginrh';
+import { getverificaologintec } from '../../public/controles/controlelogintec';
+
 import Login from '../../public/interfaces/interfacelogin';
 import { useRouter } from 'next/router';
 
@@ -18,11 +19,11 @@ export default function LoginPage() {
   async function handleLogin() {
     const user: Login = { codigo: -1, nome: "", email, senha };
     try {
-      const response  = await getverificaologinrh(user);
+      const response  = await getverificaologintec(user);
       // fazer algo com a resposta, como redirecionar o usuário ou exibir mensagem de sucesso
       if(response === 200){
-        localStorage.setItem('token', 'centralrh');
-        router.push('/centralrh')
+        localStorage.setItem('token', 'centraltec');
+        router.push('/centraltec')
       }else {
         alert('Usuario ou Senha Incorretos')
       }
@@ -45,7 +46,7 @@ export default function LoginPage() {
         <h1 className={`m-3 fs-1 ${TextColorClass}`}>
           Faça o Login
         </h1>
-        <p className={`m-3 fs-4 ${TextColorClass}`}>Para entrar na nossa Plataforma</p>
+        <p className={`m-3 fs-4 ${TextColorClass}`}>Para entrar na nossa Plataforma.</p>
       </div>
 
       <div className='d-flex flex-row min-vh-100 align-items-center sombra '>
