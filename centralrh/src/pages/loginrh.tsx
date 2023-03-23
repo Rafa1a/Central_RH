@@ -20,7 +20,7 @@ export default function LoginPage() {
     try {
       const response  = await getverificaologinrh(user);
       // fazer algo com a resposta, como redirecionar o usuário ou exibir mensagem de sucesso
-      if(response === 200){
+      if(response === 200){ 
         localStorage.setItem('token', 'centralrh');
         router.push('/centralrh')
       }else {

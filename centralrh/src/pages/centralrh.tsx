@@ -5,22 +5,25 @@ import {State} from '../../store/interfaces'
 import Link from 'next/link';
 import {darkmode} from '../../store/actions'
 import data from '../../public/usuarios/entrevistas.json'
-
+import {setadicionarentrevista, setexcluir} from '../../public/controles/controleentrevista'
 import moment from "moment";
 
 export default function LoginPageRH() {
   const dispatch = useDispatch()
 
   const Darkmode = useSelector((state: State) => state.darkMode)
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const handleDarkModeToggle = () => {
     dispatch(darkmode());
     };
-  const [activeIndex, setActiveIndex] = useState(0);
 
   const handleClick = (index:number) => {
       setActiveIndex(index);
     };
+  const handleclickexcluir = (id:number) => {
+    setexcluir(id)
+  }
   
   const navbarBackgroundColorClass = Darkmode
   ? 'bg-dark'
@@ -66,7 +69,9 @@ export default function LoginPageRH() {
               <div className='row flex-grow-1  justify-content-center align-items-center w-100'>
               <div className='col-6 d-flex justify-content-center'>
                 <button type="button" className="btn btn-primary mx-2 w-25">Botão</button>
+                <button type="button" className="btn btn-primary mx-2 " onClick={() => handleclickexcluir(activeIndex)}>excluir</button>
               </div>
+              
                 <div className='col-6 list-group ' style={{ maxHeight: "60vh", overflowY: "scroll"}}>
 
                 {data.map((item, index )=> (

@@ -1,5 +1,5 @@
 interface Entrevista {
-    id: number;
+    id: number; 
     nomeCandidato: string;
     vaga: string;
     redesSociais: string[];

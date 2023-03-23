@@ -38,22 +38,11 @@ export default async function entrevistasHandler(req: NextApiRequest, res: NextA
         entrevistas.entrevistas.push(newEntrevista);
         saveEntrevistas(entrevistas);
         res.status(200).json(entrevistas);
-      } catch (error) {
-        res.status(500).send("");
+      } catch (error:any) {
+        res.status(500).send(error);
       }
       break;
-    case 'DELETE':
-      try {
-        const { id } = body;
-        const entrevistas = getEntrevistas();
-        const updatedEntrevistas = entrevistas.entrevistas.filter((entrevista) => entrevista.id !== id);
-        entrevistas.entrevistas = updatedEntrevistas;
-        saveEntrevistas(entrevistas);
-        res.status(200).json(entrevistas);
-      } catch (error) {
-        res.status(500).send("");
-      }
-      break;
+    
     default:
       res.setHeader('Allow', ['GET', 'POST', 'DELETE']);
       res.status(405).end(`Method ${method} Not Allowed`);

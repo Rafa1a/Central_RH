@@ -15,7 +15,7 @@ export default async function login (req:NextApiRequest, res: NextApiResponse){
     if (userL && userS){
         console.log(userL, userS)
         //const userss = users.users 
-        res.status(200).json(200)
+        res.status(200).json("200")
         
     }else {
         console.log(userL, userS)
