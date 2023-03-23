@@ -39,8 +39,9 @@ export default async function entrevistasHandler(req: NextApiRequest, res: NextA
       const entrevistas = await getEntrevistas();
 
       const newEntrevista = { ...entrevista, id: Date.now() };
-      
+
       entrevistas.push(newEntrevista);
+      
       await saveEntrevistas( entrevistas );
       res.status(200).json(entrevistas);
     } catch (error:any) {

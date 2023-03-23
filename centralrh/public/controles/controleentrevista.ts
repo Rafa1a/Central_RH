@@ -11,16 +11,22 @@ export async function getEntrevistas () {
   return dados;
 };
 export async function setadicionarentrevista(user : Entrevista): Promise<Entrevista> {
-    const  response =await fetch (baseURL,{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(user)
-      } )
-    const data = await response.json() 
-    
-    return data
+  try {
+    const response = await fetch(baseURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+  
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to fetch');
+  }
+  
 } 
 export async function setexcluir(id: number) {
   const response = await fetch(`${baseURL}/${id}`, {
