@@ -7,29 +7,32 @@ type Data = {
   entrevistas: Entrevista[];
 };
 
-const filePath = '../../../../public/usuarios/entrevistas.json';
+const filePath = 'https://central-rh-dzv2-bnljwwfjz-rafa1a.vercel.app/usuarios/entrevistas.json';
 
-const getEntrevistas = (): Data => {
-  const fileContents = fs.readFileSync(filePath, 'utf8');
-  return JSON.parse(fileContents) as Data;
+const getEntrevistas = async (): Promise<Entrevista> => {
+  const response = await fetch(filePath);
+  const dados = await response.json();
+  
+  return dados;
 };
 
 const saveEntrevistas = (data: Data): void => {
   fs.writeFileSync(filePath, JSON.stringify(data));
 };
 
-export default async function entrevistasHandler(req: NextApiRequest, res: NextApiResponse<Data | string>): Promise<void> {
+export default async function entrevistasHandler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   const { method, body } = req;
 
   switch (method) {
     case 'GET':
-      try {
-        const entrevistas = getEntrevistas();
-        res.status(200).json(entrevistas);
-      } catch (error : any) {
-        res.status(500).send(error);
-      }
-      break;
+  try {
+    const entrevistas = await getEntrevistas(); // adicionado await aqui
+    res.status(200).json(entrevistas);
+  } catch (error : any) {
+    res.status(500).send(error);
+  }
+  break;
+
     case 'POST':
       try {
         const { entrevista } = body;
