@@ -28,7 +28,65 @@
           }
         ],
         "anexo": ["https://drive.google.com/file/d/1XdPAkURBm_lAhXAmhHqbEsgZJxKcG_GI/view?usp=sharing"]
-      }  
+      }, {
+        "id": 1,
+        "nomeCandidato": "João da Silva",
+        "vaga": "Desenvolvedor Full Stack",
+        "redesSociais": [{
+          "linkedin": "https://www.linkedin.com/in/joaosilva/",
+          "github": "https://github.com/joaosilva"
+        }],
+        "descricao": "João tem experiência em desenvolvimento web e mobile, domina React e Node.js, além de ter conhecimento em bancos de dados SQL e NoSQL.",
+        "consideracoes": "João já realizou o teste técnico e obteve um bom resultado.",
+        "dataHora": "2023-04-15T14:00:00-03:00",
+        "responsaveis": [
+          {
+            "id": 1,
+            "nome": "Luciana Souza",
+            "perfil": "RH"
+          },
+          {
+            "id": 2,
+            "nome": "Pedro Oliveira",
+            "perfil": "Tecnologia"
+          },
+          {
+            "id": 3,
+            "nome": "Maria Silva",
+            "perfil": "Tecnologia"
+          }
+        ],
+        "anexo": ["https://drive.google.com/file/d/1XdPAkURBm_lAhXAmhHqbEsgZJxKcG_GI/view?usp=sharing"]
+      } ,{
+        "id": 2,
+        "nomeCandidato": "João da Silva",
+        "vaga": "Desenvolvedor Full Stack",
+        "redesSociais": [{
+          "linkedin": "https://www.linkedin.com/in/joaosilva/",
+          "github": "https://github.com/joaosilva"
+        }],
+        "descricao": "João tem experiência em desenvolvimento web e mobile, domina React e Node.js, além de ter conhecimento em bancos de dados SQL e NoSQL.",
+        "consideracoes": "João já realizou o teste técnico e obteve um bom resultado.",
+        "dataHora": "2023-04-15T14:00:00-03:00",
+        "responsaveis": [
+          {
+            "id": 1,
+            "nome": "Luciana Souza",
+            "perfil": "RH"
+          },
+          {
+            "id": 2,
+            "nome": "Pedro Oliveira",
+            "perfil": "Tecnologia"
+          },
+          {
+            "id": 3,
+            "nome": "Maria Silva",
+            "perfil": "Tecnologia"
+          }
+        ],
+        "anexo": ["https://drive.google.com/file/d/1XdPAkURBm_lAhXAmhHqbEsgZJxKcG_GI/view?usp=sharing"]
+      }    
     ]
   
   
