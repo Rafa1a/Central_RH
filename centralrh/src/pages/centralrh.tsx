@@ -4,7 +4,10 @@ import {useSelector,useDispatch } from 'react-redux'
 import {State} from '../../store/interfaces'
 import Link from 'next/link';
 import {darkmode} from '../../store/actions'
-import data from '../../public/usuarios/candidato.json'
+import data from '../../public/usuarios/entrevistas.json'
+
+import moment from "moment";
+
 export default function LoginPageRH() {
   const dispatch = useDispatch()
 
@@ -44,9 +47,7 @@ export default function LoginPageRH() {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link className={`nav-link active ${navbarTextColorClass}`} aria-current="page" href="/">Candidatos</Link>
-              </li>
+              
               <li className="nav-item">
                 <Link className={`nav-link ${navbarTextColorClass}`} href="/">Entrevistas</Link>
               </li>
@@ -71,24 +72,15 @@ export default function LoginPageRH() {
                 {data.map((item, index )=> (
                   <button key={item.id} className={`list-group-item list-group-item-action ${
                     index === activeIndex ? "active" : ""
-                  }`} type="button" data-bs-toggle="offcanvas" data-bs-target={`#offcanvasWithBothOptions${item.id}`} aria-controls={`offcanvasWithBothOptions${item.id}`} onClick={() => handleClick(index)}>
+                  }`} type="button" onClick={() => handleClick(index)}>
                   
                     <div className="d-flex w-100 justify-content-between">
-                      <h5 className="mb-1">{item.title}</h5>
-                      <small>{item.date}</small>
+                      <h5 className="mb-1">{item.nomeCandidato}</h5>
+                      <small>{moment(item.dataHora).format("DD/MM/YYYY HH:mm")}</small>
                     </div>
-                    <p className="mb-1">{item.content}</p>
-                    <small>{item.footer}</small>
-                    <div className="offcanvas offcanvas-start" data-bs-scroll="true" tabIndex={-1} id={`offcanvasWithBothOptions${item.id}`} aria-labelledby={`offcanvasWithBothOptions${item.id}`}>
-                    <div className="offcanvas-header">
-                      <h5 className="offcanvas-title" id={`${item.id}`}>{item.title}</h5>
-
-                      <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div className="offcanvas-body">
-                      <p>{item.content}</p>
-                    </div>
-                  </div>
+                    <p className="mb-1">{item.descricao}</p>
+                    <small>{item.vaga}</small>
+                    
 
                   </button>
                 ))}
