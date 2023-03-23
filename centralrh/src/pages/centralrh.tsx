@@ -1,9 +1,10 @@
 import PrivateRoute, { LoginType } from './PrivateRoute';
+import { useState } from "react";
 import {useSelector,useDispatch } from 'react-redux'
 import {State} from '../../store/interfaces'
 import Link from 'next/link';
 import {darkmode} from '../../store/actions'
-
+import data from '../../public/usuarios/candidato.json'
 export default function LoginPageRH() {
   const dispatch = useDispatch()
 
@@ -12,7 +13,12 @@ export default function LoginPageRH() {
   const handleDarkModeToggle = () => {
     dispatch(darkmode());
     };
-    
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleClick = (index:number) => {
+      setActiveIndex(index);
+    };
+  
   const navbarBackgroundColorClass = Darkmode
   ? 'bg-dark'
   : 'bg-body-tertiary';
@@ -61,32 +67,32 @@ export default function LoginPageRH() {
                 <button type="button" className="btn btn-primary mx-2 w-25">Botão</button>
               </div>
                 <div className='col-6 list-group ' style={{ maxHeight: "60vh", overflowY: "scroll"}}>
-                  <button  className="list-group-item list-group-item-action active" aria-current="true" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-                   
-                  <div className="offcanvas offcanvas-start" data-bs-scroll="true" tabIndex={-1} id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+
+                {data.map((item, index )=> (
+                  <button key={item.id} className={`list-group-item list-group-item-action ${
+                    index === activeIndex ? "active" : ""
+                  }`} type="button" data-bs-toggle="offcanvas" data-bs-target={`#offcanvasWithBothOptions${item.id}`} aria-controls={`offcanvasWithBothOptions${item.id}`} onClick={() => handleClick(index)}>
+                  
+                    <div className="d-flex w-100 justify-content-between">
+                      <h5 className="mb-1">{item.title}</h5>
+                      <small>{item.date}</small>
+                    </div>
+                    <p className="mb-1">{item.content}</p>
+                    <small>{item.footer}</small>
+                    <div className="offcanvas offcanvas-start" data-bs-scroll="true" tabIndex={-1} id={`offcanvasWithBothOptions${item.id}`} aria-labelledby={`offcanvasWithBothOptions${item.id}`}>
                     <div className="offcanvas-header">
-                      <h5 className="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+                      <h5 className="offcanvas-title" id={`${item.id}`}>{item.title}</h5>
+
                       <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div className="offcanvas-body">
-                      <p>Try scrolling the rest of the page to see this option in action.</p>
+                      <p>{item.content}</p>
                     </div>
                   </div>
-                    <div className="d-flex w-100 justify-content-between">
-                      <h5 className="mb-1">List group item heading</h5>
-                      <small>3 days ago</small>
-                    </div>
-                    <p className="mb-1">Some placeholder content in a paragraph.</p>
-                    <small>And some small print.</small>
+
                   </button>
-                  <a href="#" className="list-group-item list-group-item-action">
-                    <div className="d-flex w-100 justify-content-between">
-                      <h5 className="mb-1">List group item heading</h5>
-                      <small className="text-muted">3 days ago</small>
-                    </div>
-                    <p className="mb-1">Some placeholder content in a paragraph.</p>
-                    <small className="text-muted">And some muted small print.</small>
-                  </a>
+                ))}
+                 
                   
                 </div>
               </div>
