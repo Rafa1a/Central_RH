@@ -25,7 +25,7 @@ export default function LoginPage() {
         localStorage.setItem('token', 'centraltec');
         router.push('/centraltec')
       }else {
-        alert('Usuario ou Senha Incorretos')
+        window.alert('Usuario ou Senha Incorretos')
       }
     } catch (error) {
       console.error(error);

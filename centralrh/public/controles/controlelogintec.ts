@@ -1,5 +1,5 @@
 import  Login from '../interfaces/interfacelogin'
-const baseURL = 'http://localhost:3000/api/logintec'
+const baseURL = 'https://central-rh-dzv2-rafa1a.vercel.app//api/logintec'
 
 export async function getverificaologintec(user : Login): Promise<Number> {
     const  response =await fetch (baseURL,{

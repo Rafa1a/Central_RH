@@ -24,7 +24,7 @@ export default function LoginPage() {
         localStorage.setItem('token', 'centralrh');
         router.push('/centralrh')
       }else {
-        alert('Usuario ou Senha Incorretos')
+        window.alert('Usuario ou Senha Incorretos')
       }
     } catch (error) {
       console.error(error);
