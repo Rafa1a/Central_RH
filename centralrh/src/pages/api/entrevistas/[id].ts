@@ -22,10 +22,16 @@ export default async(req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'DELETE') { 
     try {
         const  id  = Number(req.query.id);
+
         let entrevistas = await getEntrevistas();
-        const updatedEntrevistas = entrevistas.filter((entrevista : Entrevista) => entrevista.id !== id);
+
+        const updatedEntrevistas = entrevistas.filter
+        ((entrevista : Entrevista) => entrevista.id !== id);
+
         entrevistas = updatedEntrevistas;
+
         saveEntrevistas(entrevistas);
+        
         res.status(200).json(entrevistas);
       } catch (error) {
         res.status(500).send(error);

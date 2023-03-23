@@ -22,19 +22,14 @@ export async function setadicionarentrevista(user : Entrevista): Promise<Entrevi
     
     return data
 } 
-export async function setexcluir(id: number): Promise<Number> {
+export async function setexcluir(id: number) {
   const response = await fetch(`${baseURL}/${id}`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    // envie o id como parte do corpo da requisição
-    body: JSON.stringify({ id: id })
+    method: 'DELETE'
   });
   if (!response.ok) {
     throw new Error('Erro ao excluir entrevista');
     
   }
   const data = await response.json(); 
-  return data;
+  return data.ok;
 }
