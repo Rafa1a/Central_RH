@@ -23,16 +23,18 @@ export default async(req: NextApiRequest, res: NextApiResponse) => {
     try {
         const  id  = Number(req.query.id);
 
-        let entrevistas = await getEntrevistas();
+        const entrevistas = fs.readFileSync('../../../../public/usuarios/entrevistas.json', 'utf-8');
+        const dados = JSON.parse(entrevistas);
 
-        const updatedEntrevistas = entrevistas.filter
+
+        const updatedEntrevistas = dados.filter
         ((entrevista : Entrevista) => entrevista.id !== id);
-
-        entrevistas = updatedEntrevistas;
-
-        saveEntrevistas(entrevistas);
+        const json = JSON.stringify(updatedEntrevistas);
         
-        res.status(200).json(entrevistas);
+        fs.writeFileSync('../../../../public/usuarios/entrevistas.json', json);
+        
+
+        res.status(200).json(json);
       } catch (error) {
         res.status(500).send(error);
       }
