@@ -4,25 +4,27 @@ import fs from 'fs';
 import data from '../../../../public/usuarios/entrevistas.json'
 
 
-  const filePath = '../../../../public/usuarios/entrevistas.json';
+const filePath = 'https://central-rh-dzv2-rafa1a.vercel.app/usuarios/entrevistas.json';
+
+const getEntrevistas = async (): Promise<Entrevista[]> => {
+  const response = await fetch(filePath);
+  const dados = await response.json();
   
-  const getEntrevistas = () => {
-    const fileContents = fs.readFileSync(filePath, 'utf8');
-    return JSON.parse(fileContents);
-  };
+  return dados;
+};
   
-  const saveEntrevistas = (data: Entrevista): void => {
+  const saveEntrevistas = (data: Entrevista[]): void => {
     fs.writeFileSync(filePath, JSON.stringify(data));
   };
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+export default async(req: NextApiRequest, res: NextApiResponse) => {
     
   if (req.method === 'DELETE') { 
     try {
         const  id  = Number(req.query.id);
-        const entrevistas = getEntrevistas();
-        const updatedEntrevistas = entrevistas.entrevistas.filter((entrevista : Entrevista) => entrevista.id !== id);
-        entrevistas.entrevistas = updatedEntrevistas;
+        let entrevistas = await getEntrevistas();
+        const updatedEntrevistas = entrevistas.filter((entrevista : Entrevista) => entrevista.id !== id);
+        entrevistas = updatedEntrevistas;
         saveEntrevistas(entrevistas);
         res.status(200).json(entrevistas);
       } catch (error) {

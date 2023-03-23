@@ -7,16 +7,16 @@ type Data = {
   entrevistas: Entrevista[];
 };
 
-const filePath = 'https://central-rh-dzv2-bnljwwfjz-rafa1a.vercel.app/usuarios/entrevistas.json';
+const filePath = 'https://central-rh-dzv2-rafa1a.vercel.app/usuarios/entrevistas.json';
 
-const getEntrevistas = async (): Promise<Entrevista> => {
+const getEntrevistas = async (): Promise<Entrevista[]> => {
   const response = await fetch(filePath);
   const dados = await response.json();
   
   return dados;
 };
 
-const saveEntrevistas = (data: Data): void => {
+const saveEntrevistas = (data: Entrevista[]): void => {
   fs.writeFileSync(filePath, JSON.stringify(data));
 };
 
@@ -33,17 +33,19 @@ export default async function entrevistasHandler(req: NextApiRequest, res: NextA
   }
   break;
 
-    case 'POST':
-      try {
-        const { entrevista } = body;
-        const entrevistas = getEntrevistas();
-        const newEntrevista = { ...entrevista, id: Date.now() };
-        
-        res.status(200).json(entrevistas);
-      } catch (error:any) {
-        res.status(500).send(error);
-      }
-      break;
+  case 'POST':
+    try {
+      const { entrevista } = body;
+      const entrevistas = await getEntrevistas();
+      const newEntrevista = { ...entrevista, id: Date.now() };
+      entrevistas.push(newEntrevista);
+      await saveEntrevistas( entrevistas );
+      res.status(200).json(entrevistas);
+    } catch (error:any) {
+      res.status(500).send(error);
+    }
+    break;
+  
     
     default:
       res.setHeader('Allow', ['GET', 'POST', 'DELETE']);
